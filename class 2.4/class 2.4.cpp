@@ -8,7 +8,8 @@ int main()
 	system("mode con cols=80 lines=40");	//	mode /?	
 
 	system("color A");
-	/*	***貌似部不太对***
+	system("color 13");	// 1表示背景背景，3表示字体颜色 
+	/*	
 		0 = 黑色		8 = 灰色
 		1 = 蓝色		9 = 淡蓝色
 		2 = 绿色		A = 淡灰色
