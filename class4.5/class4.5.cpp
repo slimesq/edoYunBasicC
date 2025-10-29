@@ -8,18 +8,80 @@ void homework() {
 	unsigned int lights{ 0x00 };
 	std::cout << "俱乐部的灯光使用32个数字表:0表示关闭，1表示打开" << std::endl;
 	std::cout << "台球部、桌游区、酒吧区、休息区从做到右分别用8个数字表示";
-	std::cout << "1.输入数字的位置控制对应的灯:可以输入（1-32）:";
-	unsigned int open{};
-	std::cin >> open;
-	open = 0x80000000 >> (open - 1);
-	lights = lights | open;
-	std::cout << "所有的灯的情况为:" << std::bitset<32>(lights) << std::endl;
-	std::cout << "2.输入数字的位置控制区域的灯:可以输入（1-4）:";
-	unsigned int area{};
-	std::cin >> area;
-	area = 0xFF000000 >> ((area - 1) << 3);
-	lights = lights | area;
-	std::cout << "所有的灯的情况为:" << std::bitset<32>(lights) << std::endl;
+
+	{
+		std::cout << "1.打开数字的位置控制对应的灯（1-32）:";
+		unsigned int open{};
+		std::cin >> open;
+		open = 0x80000000 >> (open - 1);
+		lights = lights | open;
+		std::cout << "所有的灯的情况为:" << std::bitset<32>(lights) << std::endl;
+	}
+	
+	{
+		std::cout << "2.打开数字的位置控制区域的灯（1-4）:";
+		unsigned int area{};
+		std::cin >> area;
+		area = 0xFF000000 >> ((area - 1) << 3);
+		lights = lights | area;
+		std::cout << "所有的灯的情况为:" << std::bitset<32>(lights) << std::endl;
+	}
+
+	{
+		std::cout << "2.1 关闭数字的位置控制区域的灯（1-4）:";
+		unsigned int area{};
+		std::cin >> area;
+		area = 0xFF000000 >> ((area - 1) << 3);
+		lights = lights & (~area);
+		std::cout << "所有的灯的情况为:" << std::bitset<32>(lights) << std::endl;
+	}
+
+	{
+		std::cout << "1.1 关闭数字的位置控制对应的灯（1-32）:";
+		unsigned int open{};
+		std::cin >> open;
+		unsigned int localInt = 0x01 << (32 - open);
+		lights = lights & (~localInt);
+		std::cout << "所有的灯的情况为:" << std::bitset<32>(lights) << std::endl;
+	}
+
+	{
+		std::cout << "3.请输入你想要获取的区域的编号(1-4): ";
+		unsigned int cat{};
+		std::cin >> cat;
+		unsigned int lightCopy{ lights };
+		lightCopy >>= 8 * (4 - cat);
+		unsigned int areaLight = lightCopy & 0xFF;
+		std::cout << "指定区域的灯的情况为:" << std::bitset<8>(areaLight) << std::endl;
+	}
+
+	{
+		std::cout << "4. 打开全部的灯:" << std::endl;;
+		lights = lights | 0xFFFFFFFF;
+		std::cout << "所有的灯的情况为:" << std::bitset<32>(lights) << std::endl;
+	}
+	
+	{
+		std::cout << "5.关闭所有的灯:" << std::endl;;
+		lights = lights & 0x00;
+		std::cout << "所有的灯的情况为:" << std::bitset<32>(lights) << std::endl;
+	}
+
+	return;
+}
+
+void swap() {
+	int a{}, b{};
+	std::cout << "请输入一个数a:";
+	std::cin >> a;
+	std::cout << "请输入另一个数b:";
+	std::cin >> b;
+
+	a = a ^ b;	// a1 = a ^ b;
+	b = a ^ b;	// b1 = a ^ b ^ b = a
+	a = a ^ b;	// a1 = a1 ^ b1 = a ^ b ^ a = b; 
+
+	std::cout << "交换后的值为：" << "a = " << a << " ,b = " << b << std::endl;
 
 
 	return;
@@ -28,6 +90,7 @@ void homework() {
 
 int main()
 {
+	//swap();
 	homework();
 
 	int test1{ 0x2833 };	// 0x0000
