@@ -3,9 +3,23 @@
 
 #include <iostream>
 
+//extern void testX();
+
+inline int a = 350;	// C++17
+
+static int sa = 250;
+
+const int pt = 1000;	// 想要具有外部链接属性，可以加上extern
+
+void Test();
 int main()
 {
-   
+	//testX();
+	std::cout << a << std::endl;
+	Test();
+
+	std::cout << "&sa = " << &sa << std::endl;
+
 	return 0;
 }
 
