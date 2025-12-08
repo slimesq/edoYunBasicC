@@ -3,6 +3,11 @@
 
 #include <iostream>
 
+class object final {
+public:
+	int hp;
+};
+
 int main()
 {
 	return 0;
