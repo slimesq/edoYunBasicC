@@ -42,7 +42,7 @@ private:
 	char* m_buffer;			// 动态缓冲区(含初始缓冲区)
 	size_t m_buffer_size;	// 缓冲区总容量
 	size_t m_data_length;	// 实际存储字符串长度
-	static const size_t INIT_BUFF_SIZE = 10;
+	static const size_t INIT_BUFF_SIZE = 20;	// 20 for test
 	inline static const size_t npos = -1;
 };
 

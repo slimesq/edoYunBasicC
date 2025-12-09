@@ -207,7 +207,7 @@ hstring& hstring::replace(int _begin, const char* _subStr, const char* _newStr) 
 				if (subLength < newSubLength) {
 					// ÍùºóÒÆ
 					for (int i{ 0 }; i <= nRemainings; ++i) {
-						m_buffer[m_data_length - i + 1] = m_buffer[oldLength - i + 1];
+						m_buffer[m_data_length - i] = m_buffer[oldLength - i];
 					}
 					memcpy(m_buffer + _begin + pos, _newStr, newSubLength);
 				}
